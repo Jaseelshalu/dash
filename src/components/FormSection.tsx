@@ -2,7 +2,9 @@ import * as React from 'react'
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 
+import { toast } from "sonner"
 import { Button } from "@/components/ui/button"
 import {
     Form,
@@ -30,35 +32,44 @@ const FormSection = () => {
     })
 
     // 2. Define a submit handler.
-    function onSubmit(values: z.infer<typeof formSchema>) {
-        // Do something with the form values.
-        // ✅ This will be type-safe and validated.
-        console.log(values)
+    function onSubmit(data: z.infer<typeof formSchema>) {
+        toast("Event has been created", {
+            description: "Sunday, December 03, 2023 at 9:00 AM",
+            action: {
+                label: "Undo",
+                onClick: () => console.log("Undo"),
+            },
+        })
     }
 
     return (
-        <div className='bg-red-300'>
-        <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-                <FormField
-                    control={form.control}
-                    name="username"
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>Username</FormLabel>
-                            <FormControl>
-                                <Input placeholder="shadcn" {...field} />
-                            </FormControl>
-                            <FormDescription>
-                                This is your public display name.
-                            </FormDescription>
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
-                <Button type="submit" className='text-black'>Submit</Button>
-            </form>
-        </Form>
+        <div className='h-full'>
+            <Form {...form}>
+                <form onSubmit={form.handleSubmit(onSubmit)} className="w-2/3 space-y-6 p-10">
+                    <Avatar>
+                        <AvatarImage src="https://github.com/shadcn.png" />
+                        <AvatarFallback>CN</AvatarFallback>
+                    </Avatar>
+                    <FormField
+                        control={form.control}
+                        name="username"
+                        render={({ field }) => (
+                            <FormItem>
+                                <FormLabel>Username</FormLabel>
+                                <FormControl>
+                                    <Input placeholder="shadcn" {...field} />
+                                </FormControl>
+                                <FormDescription>
+                                    This is your public display name.
+                                </FormDescription>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+                    <Button type="submit">Submit</Button>
+                </form>
+            </Form>
+
         </div>
     )
 }

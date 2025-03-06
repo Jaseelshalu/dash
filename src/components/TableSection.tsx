@@ -13,7 +13,7 @@ import {
 
 const TableSection = () => {
     return (
-        <div className='flex flex-1 flex-col p-4 max-width-50 bg-orange-300'>
+        <div className='flex flex-1 flex-col p-4 max-width-50 h-full'>
             <Table>
                 <TableCaption>A list of admins and their roles in Thelicham.</TableCaption>
                 <TableHeader>

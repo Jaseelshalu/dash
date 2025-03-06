@@ -5,13 +5,14 @@ import './index.css';
 import App from './App';
 import { SidebarProvider, SidebarTrigger } from './components/ui/sidebar';
 import { AppSidebar } from './components/AppSidebar';
+import { BrowserRouter } from 'react-router-dom';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <SidebarProvider>
-      <AppSidebar />
-        <SidebarTrigger />
+    <BrowserRouter>
+        {/* <AppSidebar /> */}
+        {/* <SidebarTrigger /> */}
         <App />
-    </SidebarProvider>
+    </BrowserRouter>
   </StrictMode>
 );
